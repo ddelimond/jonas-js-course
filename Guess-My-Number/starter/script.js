@@ -54,15 +54,38 @@ function gameLogic(guessIsCorrect){
 
   scoreText = document.querySelector('.score').textContent;
 
-   if(guessIsCorrect === false){
+   // Logic for an incorrect quess
+
+   if(guessIsCorrect === false && Number.parseInt(document.querySelector('.score').textContent)>=0){
+
+     // Subracts 1 from the score until it gets to 0
 
      document.querySelector(".score").innerText = Number.parseInt(scoreText)-1;
-   }
-   else{
 
-     console.log(true)
+     // Message Changes to GAME OVER
+
+     if(Number.parseInt(document.querySelector('.score').textContent) === 0){
+
+       document.querySelector('.message').innerText = "GAME OVER!"
+
+     }
 
    }
+
+   if(guessIsCorrect === true){
+
+
+     //   check to see if user has a high score
+
+     document.querySelector(".number").innerText = document.querySelector('input').value;
+     document.querySelector(".message").innerText = "You Guesed the Correct Number! 🥳 🎉"
+
+
+
+
+
+   }
+
 
 }
 
