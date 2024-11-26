@@ -2,19 +2,17 @@
 
 //      Program Variables
 let randomNumber = Math.ceil(Math.random()*20);
-let maskedBoxedValue = document.querySelector(".number").textContent;
-let directionMessage = document.querySelector(".message").textContent;
+
 let inputField = document.querySelector("input");
 let userInputValue = Number.parseInt(document.querySelector(".guess").value);
 let validationBtn = document.querySelector(".check");
 let restartBtn = document.querySelector(".again");
-let highScoreText = document.querySelector("span.highscore").textContent;
 let scoreText = document.querySelector(".score").textContent;
+let highScore = sessionStorage.getItem("highScore");
 
-
-
-
-
+// EventListeners for the program
+validationBtn.addEventListener("click", compareActualValueWithGuess);
+inputField.addEventListener('change', changeInputValue);
 
 
 // Function to compare the random variable with the users quess
@@ -42,11 +40,26 @@ function changeInputValue(){
 }
 
 
-// EventListeners for the program
-validationBtn.addEventListener("click", compareActualValueWithGuess);
-inputField.addEventListener('change', changeInputValue);
+function checkForHighScore(){
+
+  if( highScore !== null||undefined){
+
+    let userScore = Number.parseInt(document.querySelector(".score").textContent);
+
+    if(userScore > highScore){
+
+      document.querySelector('.highscore').innerText =  userScore;
+
+      sessionStorage.setItem("highScore") = userScore;
+
+    }
 
 
+  }
+
+  document.querySelector('.highscore').innerText = 0;
+
+}
 
 
 
@@ -74,18 +87,12 @@ function gameLogic(guessIsCorrect){
 
    if(guessIsCorrect === true){
 
-
      //   check to see if user has a high score
 
      document.querySelector(".number").innerText = document.querySelector('input').value;
      document.querySelector(".message").innerText = "You Guesed the Correct Number! 🥳 🎉"
 
-
-
-
-
    }
-
 
 }
 
