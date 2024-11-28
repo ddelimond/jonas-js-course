@@ -10,6 +10,18 @@ let restartBtn = document.querySelector(".again");
 let scoreText = document.querySelector(".score").textContent;
 let highScore = sessionStorage.getItem("highScore");
 
+
+if(highScore === null){
+
+  document.querySelector('.highscore').innerText = 0;
+
+  sessionStorage.setItem("highScore","0");
+
+  highScore = sessionStorage.getItem("highScore");
+
+}
+
+
 // EventListeners for the program
 validationBtn.addEventListener("click", compareActualValueWithGuess);
 inputField.addEventListener('change', changeInputValue);
@@ -42,24 +54,16 @@ function changeInputValue(){
 
 function checkForHighScore(){
 
-  if( highScore !== null||undefined){
-
     let userScore = Number.parseInt(document.querySelector(".score").textContent);
 
-    if(userScore > highScore){
+    if(userScore > Number.parseInt(highScore)){
 
-      document.querySelector('.highscore').innerText =  userScore;
-
-      sessionStorage.setItem("highScore") = userScore;
+      sessionStorage.setItem("highScore", userScore.toString());
+      document.querySelector(".highscore").innerText =  userScore;
 
     }
 
-
   }
-
-  document.querySelector('.highscore').innerText = 0;
-
-}
 
 
 
@@ -79,7 +83,7 @@ function gameLogic(guessIsCorrect){
 
      if(Number.parseInt(document.querySelector('.score').textContent) === 0){
 
-       document.querySelector('.message').innerText = "GAME OVER!"
+       document.querySelector('.message').innerText = "GAME OVER!";
 
      }
 
@@ -88,9 +92,9 @@ function gameLogic(guessIsCorrect){
    if(guessIsCorrect === true){
 
      //   check to see if user has a high score
-
+     checkForHighScore();
      document.querySelector(".number").innerText = document.querySelector('input').value;
-     document.querySelector(".message").innerText = "You Guesed the Correct Number! 🥳 🎉"
+     document.querySelector(".message").innerText = "You Guesed the Correct Number! 🥳 🎉";
 
    }
 
