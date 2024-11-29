@@ -11,6 +11,7 @@ let scoreText = document.querySelector(".score").textContent;
 let highScore = sessionStorage.getItem("highScore");
 
 
+// Starting Baseline Logic for HighScore
 if(highScore === null){
 
   document.querySelector('.highscore').innerText = 0;
@@ -19,18 +20,19 @@ if(highScore === null){
 
   highScore = sessionStorage.getItem("highScore");
 
+}else{
+  document.querySelector('.highscore').innerText = highScore;
 }
 
 
 // EventListeners for the program
 validationBtn.addEventListener("click", compareActualValueWithGuess);
 inputField.addEventListener('change', changeInputValue);
+restartBtn.addEventListener("click", playAgain);
 
 
 // Function to compare the random variable with the users quess
 function compareActualValueWithGuess(){
-  console.log(userInputValue);
-  console.log(randomNumber);
 
     if(randomNumber !== userInputValue){
 
@@ -62,6 +64,17 @@ function checkForHighScore(){
       document.querySelector(".highscore").innerText =  userScore;
 
     }
+
+  }
+
+
+  function playAgain(){
+
+  randomNumber = Math.ceil(Math.random()*20);
+  document.querySelector(".number").innerText = "?"
+  document.querySelector(".score").innerText = 20;
+  document.querySelector("input").value = "";
+  document.querySelector(".highscore").innerText = sessionStorage.getItem("highScore");
 
   }
 
