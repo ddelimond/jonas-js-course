@@ -80,6 +80,7 @@ function checkForHighScore(){
   document.querySelector(".number").innerText = "?"
   document.querySelector(".score").innerText = 20;
   document.querySelector("input").value = "";
+  document.querySelector(".message").innerText = "Start guessing..."
   document.querySelector(".highscore").innerText = sessionStorage.getItem("highScore");
 
   }
