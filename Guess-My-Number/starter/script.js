@@ -36,6 +36,12 @@ function compareActualValueWithGuess(){
 
     if(randomNumber !== userInputValue){
 
+      if(userInputValue >randomNumber){
+        document.querySelector('.message').innerText = " Too High! 📈"
+      }else{
+        document.querySelector('.message').innerText = " Too Low! 📉"
+      }
+
       gameLogic(false);
 
     }else{
@@ -112,7 +118,6 @@ function gameLogic(guessIsCorrect){
    }
 
 }
-
 
 
 // PsuedoCode
